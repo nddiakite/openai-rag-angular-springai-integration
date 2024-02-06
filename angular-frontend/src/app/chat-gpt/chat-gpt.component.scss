@@ -1,0 +1,19 @@
+::ng-deep nb-layout-column {
+  justify-content: center;
+  display: flex;
+}
+.chat-main {
+  width: 700px;
+  height: 680px !important;
+}
+
+.logout-button {
+  // css to ensure button is on the right
+  margin-left: auto;
+}
+
+// css to restrict logo
+.logo {
+  width: 230px;
+  height: 50px;
+}

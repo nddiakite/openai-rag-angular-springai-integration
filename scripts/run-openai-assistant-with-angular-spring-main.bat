@@ -1,0 +1,1 @@
+..\tools\apache-maven-3.9.6\bin\mvn spring-boot:run "-Dspring-boot.run.profiles=local" "-Dspring-boot.run.jvmArguments=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005" -f ..\sources\openai-assistant-with-angular-spring-main\spring-backend\

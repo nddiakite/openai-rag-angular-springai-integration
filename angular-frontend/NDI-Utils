@@ -1,0 +1,6 @@
+# BUILD
+ng buid
+
+# RUN
+ng serve
+

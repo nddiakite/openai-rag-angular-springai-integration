@@ -1,0 +1,28 @@
+# BUILD
+mvn clean install
+
+# RUN - Base
+mvn spring-boot:run -Dspring-boot.run.profiles=dev --debug -X
+
+# DEBUG - Base
+mvn spring-boot:run -Dspring-boot.run.profiles=dev -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"
+spring-boot:run -Dspring-boot.run.profiles=dev "-Dspring-boot.run.jvmArguments=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"
+# RUn - Lancement avec fichier externe
+mvn spring-boot:run "-Dspring.config.location=:\DTeK CONSULTING\dtek-lab - Documents\lab-studio\training\chatgpt-challenge\chatgpt-angular-integration\openai-assistant-with-angular-spring\application-dev.properties"
+
+# MOT DE PASSE : encode avec GPT et l'algorithme BCrypt
+
+# ACCESS BDD H2 CONSOLE
+# URL : http://localhost:8082/h2-console
+
+#USEFUL INFOS FOR ASSISTANT
+
+Assistants API : https://platform.openai.com/docs/assistants/overview
+How Assistants work :https://platform.openai.com/docs/assistants/how-it-works
+
+# Thread infos
+https://platform.openai.com/playground?assistant=asst_MgusDCcdCLNac65jBICrR33c&mode=assistant&thread=thread_D1MgicxwEbONe9YKonZxhw0s
+
+https://platform.openai.com/playground?assistant=asst_MgusDCcdCLNac65jBICrR33c&mode=assistant&thread=thread_kDXJVjuBbpFrMuZc9zpSHgPY
+
+

@@ -1,0 +1,8 @@
+# URL pour tester en local
+# Aller sur "http://localhost:8082/api/users/loggedIn" et saisir les identifiants "admin" (login) / "admin" (mot de passe)
+
+# URL pour tester en remote
+# Aller sur "http://79.137.38.153:8082/api/users/loggedIn" et saisir les identifiants "admin" (login) / "admin" (mot de passe)
+
+# Essayer d'y accéder depuis un Front ..
+
