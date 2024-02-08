@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { NbMenuItem, NbOverlayService, NbSidebarService, NbToastrService } from "@nebular/theme";
-// import { KeycloakService } from "keycloak-angular";
 import { environment } from "../../environment/environment";
 import {AuthService} from "../auth/auth.service";
 
@@ -32,15 +31,9 @@ export class NewHomeComponent {
       title: 'Assistant RH',
       link: '/assistants/rh_assistant',
       icon: 'settings-2-outline'
-    },
-    // {
-    //   title: 'Approve Access',
-    //   link: '/approve',
-    //   icon: 'edit-2-outline',
-    // }
+    }
   ];
 
-  // constructor(private sidebarService: NbSidebarService, private toastrService: NbToastrService, private overlayService: NbOverlayService, public keycloakService: KeycloakService, http: HttpClient) {
   constructor(private sidebarService: NbSidebarService, private toastrService: NbToastrService,
               private overlayService: NbOverlayService, http: HttpClient, private authService: AuthService) {
     this.accessToken = this.authService.getToken();

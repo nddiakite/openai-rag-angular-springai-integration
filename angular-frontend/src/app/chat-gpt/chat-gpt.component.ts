@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {NbMenuItem, NbOverlayService, NbSidebarService, NbToastrService} from "@nebular/theme";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-// import { KeycloakService } from "keycloak-angular";
 import {environment} from "../../environment/environment";
 import {AuthService} from "../auth/auth.service";
 import {ActivatedRoute} from "@angular/router";
@@ -37,16 +36,9 @@ export class ChatGPTComponent implements OnInit, OnDestroy {
       title: 'Assistant RH',
       link: '/assistants/rh_assistant',
       icon: 'settings-2-outline'
-    },
-    // {
-    //   title: 'Approve Access',
-    //   link: '/approve',
-    //   icon: 'edit-2-outline',
-    // }
+    }
   ];
 
-
-  // constructor(private sidebarService: NbSidebarService, private toastrService: NbToastrService, private overlayService: NbOverlayService, public keycloakService: KeycloakService, http: HttpClient) {
   constructor(private sidebarService: NbSidebarService, private toastrService: NbToastrService, private route: ActivatedRoute,
               private overlayService: NbOverlayService, http: HttpClient, private authService: AuthService) {
     let files;
@@ -123,7 +115,6 @@ export class ChatGPTComponent implements OnInit, OnDestroy {
     params = params.append("prompt", promptItem);
 
     return new Promise((resolve, reject) => {
-      // this.client.post(`${environment.serverApiUrl}/autocomplete`, {
       this.client.post(`${environment.serverApiUrl}/assistants/`.concat(this.assistantType).concat('/completion'), {
         headers: myHeaders
       }, { params }).subscribe((data) => {
@@ -152,7 +143,6 @@ export class ChatGPTComponent implements OnInit, OnDestroy {
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", `Bearer ${this.accessToken}`);
 
-    // this.client.get(`${environment.serverApiUrl}/autocomplete/allmessages`, {
     this.client.get(`${environment.serverApiUrl}/assistants/`.concat(this.assistantType).concat('/allmessages'), {
       headers: myHeaders
     }).subscribe((data) => {
@@ -175,7 +165,6 @@ export class ChatGPTComponent implements OnInit, OnDestroy {
         let theUser;
         if (isReply) {
           theUser = {
-            // name: this.keycloakService.getUsername(),
             avatar: "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"
           };
         } else {
@@ -211,7 +200,6 @@ export class ChatGPTComponent implements OnInit, OnDestroy {
       reply: true,
       type: "text",
       user: {
-        // name: this.keycloakService.getUsername(),
         name: this.userName,
         avatar: "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"
       }

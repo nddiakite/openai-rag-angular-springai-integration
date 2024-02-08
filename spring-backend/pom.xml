@@ -5,39 +5,30 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-<!--        <version>2.7.2</version>-->
         <version>3.2.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
-    <groupId>com.prasannjeet.social</groupId>
-    <artifactId>socialflow-service</artifactId>
+    <groupId>fr.dtek.fr</groupId>
+    <artifactId>openai-backend</artifactId>
     <version>2.0.0-SNAPSHOT</version>
     <name>SocialFlow</name>
-    <description>Post to your favorite social websites.</description>
 
     <properties>
         <java.version>17</java.version>
         <jdk>17</jdk>
-<!--        <openai.version>0.11.0</openai.version>-->
         <openai.version>0.18.2</openai.version>
         <spring-ai.version>0.8.0-SNAPSHOT</spring-ai.version>
-        <postgresql.version>42.2.5</postgresql.version> <!-- Utilise la dernière version compatible -->
+        <postgresql.version>42.2.5</postgresql.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>io.github.redouane59.twitter</groupId>
-            <artifactId>twittered</artifactId>
-            <version>2.21</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -53,41 +44,12 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.13</version>
-        </dependency>
 
         <!-- Open AI Library -->
         <dependency>
             <groupId>com.theokanning.openai-gpt3-java</groupId>
             <artifactId>service</artifactId>
             <version>${openai.version}</version>
-        </dependency>
-
-        <!-- Key Util -->
-        <dependency>
-            <groupId>org.jboss.spec.javax.xml.bind</groupId>
-            <artifactId>jboss-jaxb-api_2.3_spec</artifactId>
-            <version>2.0.1.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-api</artifactId>
-            <version>0.11.5</version>
-        </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-impl</artifactId>
-            <version>0.11.5</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
-            <version>0.11.5</version>
-            <scope>runtime</scope>
         </dependency>
 
         <!-- Build Plugins -->
@@ -97,18 +59,11 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.mariadb.jdbc</groupId>
-            <artifactId>mariadb-java-client</artifactId>
-            <version>3.1.2</version>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-<!--            <version>1.18.24</version>-->
-<!--            <scope>provided</scope>-->
+            <scope>provided</scope>
         </dependency>
-
 
         <!-- tests -->
         <dependency>
@@ -120,7 +75,6 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
-<!--            <version>2.1.210</version>-->
         </dependency>
 
         <dependency>
@@ -129,19 +83,11 @@
             <version>6.0.0</version>
             <scope>provided</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>jakarta.servlet</groupId>-->
-<!--            <artifactId>jakarta.servlet-api</artifactId>-->
-<!--            <version>4.0.3</version> &lt;!&ndash; ou une version plus récente &ndash;&gt;-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
-
 
         <!-- NDI - Added AI Dependencies-->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-<!--            <version>${postgresql.version}</version>-->
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -260,5 +206,4 @@
             </releases>
         </pluginRepository>
     </pluginRepositories>
-
 </project>

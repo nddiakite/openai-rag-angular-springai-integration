@@ -1,13 +1,21 @@
-# BUILD
+# BUILD_WITH_TESTS
 mvn clean install
 
-# RUN - Base
-mvn spring-boot:run -Dspring-boot.run.profiles=dev --debug -X
+# BUILD_NO_TESTS
+mvn clean install -DskipTests
 
-# DEBUG - Base
-mvn spring-boot:run -Dspring-boot.run.profiles=dev -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"
-spring-boot:run -Dspring-boot.run.profiles=dev "-Dspring-boot.run.jvmArguments=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"
-# RUn - Lancement avec fichier externe
+# RUN - Base
+mvn spring-boot:run -Dspring-boot.run.profiles=local
+
+# DEBUG (Dans le même Intellij IDEA, lancer un 1er onglet en mode debut et lancer une 2e onglet pour se connecter au port de debut)
+mvn spring-boot:run -Dspring-boot.run.profiles=local "-Dspring-boot.run.jvmArguments=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"
+# Infos 2e onglet
+Name : LOCAL_DEBUG
+Host : localhost / 79.137.38.153
+Port : 5005
+Commande line : -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+
+# RUN - Lancement avec fichier externe
 mvn spring-boot:run "-Dspring.config.location=:\DTeK CONSULTING\dtek-lab - Documents\lab-studio\training\chatgpt-challenge\chatgpt-angular-integration\openai-assistant-with-angular-spring\application-dev.properties"
 
 # MOT DE PASSE : encode avec GPT et l'algorithme BCrypt

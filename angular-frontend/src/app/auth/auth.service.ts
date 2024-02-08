@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environment/environment';
-import { map } from 'rxjs/operators';
 import {Router} from "@angular/router";
 import {NbToastrService} from "@nebular/theme";
 
@@ -15,8 +14,6 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router, private toastrService: NbToastrService) {
     const storedUser = localStorage.getItem('currentUser');
-    // this.currentUserSubject = new BehaviorSubject<any>(storedUser ? JSON.parse(storedUser) : null);
-    // this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public get currentUserValue(): any {
@@ -58,7 +55,6 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('currentUser');
-    // this.currentUserSubject.next(null);
 
     this.router.navigate(['login']);
   }

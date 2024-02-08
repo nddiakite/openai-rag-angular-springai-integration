@@ -11,9 +11,9 @@ import { NgModule } from "@angular/core";
 
 @NgModule({
   imports: [
-    RouterModule, // RouterModule.forRoot(routes, { useHash: true }), if this is your app.module
+    RouterModule,
     NbLayoutModule,
-    NbSidebarModule, // NbSidebarModule.forRoot(), //if this is your app.module
+    NbSidebarModule,
     NbButtonModule,
     NbMenuModule,
     NbThemeModule,

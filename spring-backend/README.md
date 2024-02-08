@@ -1,53 +1,47 @@
-# SocialFLow Backend Service
-Backend service for SocialFlow application.
+# OPENAI BACKEND SERVICE
+Backend service for OPENAI application.
 
 Important Functionalities:
 
 1. User Authentication
 2. User Authorization
-3. Post image to Twitter and get Image ID
-4. Post a Tweet with Image and Location to Twitter and get Tweet ID
-5. Post a Tweet with Image to Twitter and get Tweet ID
-6. Post a simple Tweet to Twitter and get Tweet ID
-7. Save image to NFS storage.
-8. Save Tweet to MariaDB
-9. Save Location to MariaDB
+3. Interact with OPENAI Assistant API with custom Assistant
+4. Interact with OPENAI Assistant API with RAG method
 
-## Some important commands
-To install Openssl, add the following in Dockerfile:
-```dockerfile
-# Install openssl
-RUN yum install -y openssl
-```
+# IMPORTANT COMMANDS
 
-Set of commands to import a certificate in keystore in Java:
-```shell
-# Change the original password of the default keystore
-keytool -storepasswd -new changeThisPass -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit
+## BUILD_WITH_TESTS
+mvn clean install
 
-# Create a directory to import the certificate
-mkdir -p usr/app/ssl/certs/
+## BUILD_NO_TESTS
+mvn clean install -DskipTests
 
-# Create a new keystore here
-keytool -genkeypair -keyalg RSA -keysize 2048 -validity 10000 -storetype PKCS12 \
-    -keystore key-cert-prasannjeet.p12 -alias pjkeystore \
-    -dname "cn=com.prasannjeet, ou=Timetable, o=Prasannjeet, c=SE" \
-    -storepass changeThisPass -keypass changeThisPass
-    
-# Now the pem certificate file must be copied here
-COPY certs/keycloak.local.pem usr/app/ssl/certs/keycloak.local.pem
+## RUN - Base
+mvn spring-boot:run -Dspring-boot.run.profiles=local
 
-# Now import this certificate in the keystore just created
-keytool -import -v -trustcacerts -alias keycloak2 -file keycloak.local.pem \
-    -keystore key-cert-prasannjeet.p12 -storepass changeThisPass -noprompt
-    
-# Finally, import the keystore in the Java keystore
-keytool -importkeystore -srckeystore /usr/app/ssl/certs/key-cert-prasannjeet.p12 \
-    -destkeystore $JAVA_HOME/lib/security/cacerts -srcstorepass changeThisPass \
-    -deststorepass changeThisPass -noprompt
-```
+## DEBUG 
+#### (Dans le même Intellij IDEA, lancer un 1er onglet en mode debut et lancer une 2e onglet pour se connecter au port de debut)
+mvn spring-boot:run -Dspring-boot.run.profiles=local "-Dspring-boot.run.jvmArguments=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"
+#### Infos 2e onglet
+Name : LOCAL_DEBUG
+Host : localhost / 79.137.38.153
+Port : 5005
+Commande line : -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
 
-In the application.yml, this part can also be set. Although `issuer-uri' is generally enough.`
-```yml
-jwk-set-uri: ${KEYCLOAK_AUTH_SERVER}:${KEYCLOAK_AUTH_PORT}/realms/${REALM_NAME}/protocol/openid-connect/certs
-```
+## RUN - Lancement avec fichier externe
+mvn spring-boot:run "-Dspring.config.location=:\DTeK CONSULTING\dtek-lab - Documents\lab-studio\training\chatgpt-challenge\chatgpt-angular-integration\openai-assistant-with-angular-spring\application-dev.properties"
+
+## ACCESS BDD H2 CONSOLE
+URL : http://localhost:8082/h2-console
+
+## USEFUL INFOS FOR ASSISTANT
+
+Assistants API : https://platform.openai.com/docs/assistants/overview
+How Assistants work :https://platform.openai.com/docs/assistants/how-it-works
+
+## Thread infos
+https://platform.openai.com/playground?assistant=asst_MgusDCcdCLNac65jBICrR33c&mode=assistant&thread=thread_D1MgicxwEbONe9YKonZxhw0s
+
+https://platform.openai.com/playground?assistant=asst_MgusDCcdCLNac65jBICrR33c&mode=assistant&thread=thread_kDXJVjuBbpFrMuZc9zpSHgPY
+
+
