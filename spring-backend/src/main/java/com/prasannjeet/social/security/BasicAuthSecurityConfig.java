@@ -6,8 +6,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -20,19 +22,21 @@ public class BasicAuthSecurityConfig {
         http
             .httpBasic()
             .and()
-            .authorizeRequests()
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers(HttpMethod.OPTIONS,"/api/**").permitAll()
-                .antMatchers("/api/users/login").permitAll()
-                .antMatchers("/api/users/loggedIn").hasAnyRole("ADMIN", "MANAGER", "OPENAI")
-                .antMatchers("/api/users/**").hasAnyRole("ADMIN")
-                .antMatchers("/api/roles/**").hasRole("ADMIN")
-                .antMatchers("/api/assistants/**").hasAnyRole("ADMIN", "OPENAI")
-                .antMatchers("/api/autocomplete/**").hasAnyRole("ADMIN", "OPENAI")
-                .antMatchers("/api/twitter/**").hasAnyRole("ADMIN", "OPENAI")
-                .antMatchers("/api/**").hasRole("ADMIN")
+            .authorizeRequests((authorizationManagerRequestMatcherRegistry) ->
+                 authorizationManagerRequestMatcherRegistry
+                .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/api/**", HttpMethod.OPTIONS.toString())).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/api/users/login")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/api/tests/pg_vector_storage")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/api/users/loggedIn")).hasAnyRole("ADMIN", "MANAGER", "OPENAI")
+                .requestMatchers(new AntPathRequestMatcher("/api/users/**")).hasAnyRole("ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/api/roles/**")).hasRole("ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/api/assistants/**")).hasAnyRole("ADMIN", "OPENAI")
+                .requestMatchers(new AntPathRequestMatcher("/api/autocomplete/**")).hasAnyRole("ADMIN", "OPENAI")
+                .requestMatchers(new AntPathRequestMatcher("/api/twitter/**")).hasAnyRole("ADMIN", "OPENAI")
+                .requestMatchers(new AntPathRequestMatcher("/api/**")).hasRole("ADMIN")
                 .anyRequest().authenticated()
-            .and()
+            )
             .csrf().disable()
             // Configuration pour H2 Console
             // Nécessaire pour permettre les frames pour la console H2
@@ -45,6 +49,10 @@ public class BasicAuthSecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
+        // LEGACY ENCODER
+        // Useful URL : https://www.baeldung.com/spring-security-5-default-password-encoder
+//        return new BCryptPasswordEncoder();
     }
 }

@@ -3,7 +3,7 @@ package com.prasannjeet.social.security;
 import com.theokanning.openai.threads.Thread;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 @Service
 public class OpenAiThreadManager {

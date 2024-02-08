@@ -14,7 +14,9 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="socialflow-service" value="1cea91cd-f163-4762-b216-bee3f8135725" />
+        </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>

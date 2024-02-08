@@ -10,6 +10,11 @@ server:
     max-swallow-size: ${MAX_UPLOAD_SIZE:20MB}
 
 spring:
+  profiles:
+    active: run
+  ai:
+    openai:
+      api-key: ${SPRING_AI_OPENAI_API_KEY}
   servlet:
     multipart:
       enabled: true
@@ -18,22 +23,32 @@ spring:
   application:
     name: timetable-oauth
   jpa:
+    defer-datasource-initialization: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+#      ddl-auto: update
+#      ddl-auto: none
     properties:
       hibernate:
         generate_statistics: true
         format_sql: true
     show-sql: true
   datasource:
-    url: jdbc:h2:mem:myDb
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
-    driver-class-name: org.h2.Driver
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+    url: jdbc:postgresql://localhost:5432/db_vector_store
+    username: ai_dev_admin
+    password: ai_dev_admin
+  sql:
+    init:
+      mode: always
+#  datasource:
+#    url: jdbc:h2:mem:myDb
+#    username: ${DB_USER}
+#    password: ${DB_PASSWORD}
+#    driver-class-name: org.h2.Driver
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
   data:
     jpa:
       repositories:

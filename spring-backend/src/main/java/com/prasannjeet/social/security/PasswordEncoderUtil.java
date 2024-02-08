@@ -1,6 +1,8 @@
 package com.prasannjeet.social.security;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class PasswordEncoderUtil {
     public static void main() {
@@ -16,6 +18,13 @@ public class PasswordEncoderUtil {
     }
 
     public static void encode(String passwordClear) {
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        String passwordEncoded = encoder.encode(passwordClear);
+
+        System.out.println("Mot de passe encodé : " + passwordEncoded);
+    }
+
+    public static void encodeLegacy(String passwordClear) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String passwordEncoded = encoder.encode(passwordClear);
 

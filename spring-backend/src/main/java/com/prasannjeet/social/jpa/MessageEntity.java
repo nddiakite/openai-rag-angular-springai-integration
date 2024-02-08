@@ -1,12 +1,12 @@
 package com.prasannjeet.social.jpa;
 
 import java.time.LocalDateTime;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.Table;
 
 import com.prasannjeet.social.jpa.enums.MessageByEnum;
 import lombok.Data;
