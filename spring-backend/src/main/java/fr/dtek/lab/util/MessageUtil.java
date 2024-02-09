@@ -40,7 +40,7 @@ public class MessageUtil {
 
     public static MessageEntity createMessageEntityFromChatMessage(ChatMessage chatMessage, String userId) {
         MessageEntity messageEntity = new MessageEntity();
-        messageEntity.setMessageId(randomUUID().toString());
+        messageEntity.setId(randomUUID().toString());
         messageEntity.setMessageText(chatMessage.getContent());
         messageEntity.setMessageBy(getMessageByFromRole(chatMessage.getRole()));
         messageEntity.setUserId(userId);
@@ -70,7 +70,7 @@ public class MessageUtil {
             ChatMessageDTO chatMessageDTO = new ChatMessageDTO(
                     messageEntity.getMessageBy() == ASSISTANT ? assistantId : messageEntity.getUserId(),
                     getEpochTime(messageEntity.getCreatedAt()),
-                    messageEntity.getMessageId(),
+                    messageEntity.getId(),
                     messageEntity.getMessageText(),
                     "text"
             );

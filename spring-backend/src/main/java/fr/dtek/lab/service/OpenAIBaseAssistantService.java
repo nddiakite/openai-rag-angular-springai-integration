@@ -81,7 +81,7 @@ public class OpenAIBaseAssistantService {
         for (int i = 0; i < chatMessages.size(); i++) {
             ChatMessage chatMessage = chatMessages.get(i);
             MessageEntity messageEntity = new MessageEntity();
-            messageEntity.setMessageId(randomUUID().toString());
+            messageEntity.setId(randomUUID().toString());
             messageEntity.setUserId(userId);
             messageEntity.setMessageBy(MessageUtil.getMessageByFromRole(chatMessage.getRole()));
             messageEntity.setCreatedAt(now.plusNanos(i * 1000L));
