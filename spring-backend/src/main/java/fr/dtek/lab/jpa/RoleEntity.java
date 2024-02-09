@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UuidGenerator;
 
 @Entity
 @Table(name = "roles")
@@ -11,8 +12,7 @@ import org.hibernate.annotations.GenericGenerator;
 @NoArgsConstructor
 public class RoleEntity {
     @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @UuidGenerator(style = UuidGenerator.Style.AUTO)
     @Column(name = "id", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)
     private String id;
 
